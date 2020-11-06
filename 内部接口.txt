@@ -1,0 +1,272 @@
+/*
+1.用户注册
+请求路径:/user/register
+提交参数： 
+*/
+{
+	"user_id":"abc1234"//用户id（微信号） 
+}
+/*返回结果*/
+{
+	"status":true,//注册成功时
+	"msg":"注册成功"//返回的消息 
+} 
+{
+	"status":false,//注册失败时
+	"msg":"提示词"//失败原因 
+}
+/*
+2.用户登录
+请求路径:/user/login
+提交参数: 
+*/ 
+{
+	"user_id":"abc1234",//用户id（微信号）
+	"password":"111111"//用户密码（视具体情况修改参数格式） 
+}
+/*返回结果*/
+{
+	"status":true,//登录成功时
+	"msg":"登录成功"//返回的消息 
+}
+{
+	"status":false,//登录失败时
+	"msg":"提示词"//失败原因 
+}
+/*
+3.修改个人信息
+请求路径:/user/update
+提交参数: 
+*/
+{
+	"user_id":"abc1234"//用户id（微信号）
+	"data":{
+		"user_name":"abc1234",//用户昵称
+		//其他数据 
+	}
+}
+/*返回结果*/ 
+{
+	"status":true,//修改个人信息成功时
+	"msg":"修改成功"//返回消息 
+}
+{
+	"status":false,//修改个人信息失败时
+	"msg":"提示词"//失败原因 
+}
+/*
+4.新增目标
+请求路径:user/target/add 
+提交参数: 
+*/
+{
+	"user_id":"abc1234",//用户id（微信号）
+	"target":{
+		"title":"MyTarget",//目标标题
+		"start_time":{
+			//开始日期
+			"year":"2020",//年
+			"month":"11",//月
+			"day":"11"//日 
+		}, 
+		"end_time":{
+			//结束日期
+			"year":"2020",//年
+			"month":"11",//月
+			"day":"11"//日 
+		}, 
+		"content":"TargetContent"//目标具体内容 
+	} 
+}
+/*返回结果*/ 
+{
+	"status":true,//新增目标成功时
+	"msg":"新增目标成功"//返回消息 
+}
+{
+	"status":false,//新增目标失败时
+	"msg":"提示词"//失败原因 
+}
+/*
+5.完成（确认）目标
+请求路径:/user/target/conplete 
+提交参数: 
+*/
+{
+	"user_id":"abc1234",//用户id（微信号）
+	"target_id":"114514"//目标id 
+} 
+/*返回结果*/ 
+{
+	"status":true,//完成目标成功时 
+	"msg":"目标完成成功"//返回消息 
+}
+{
+	"status":false,//完成目标失败时 
+	"msg":"提示词"//失败原因 
+}
+/*
+7.超时未确认目标（更新目标状态） 
+请求路径:/user/target/fail 
+提交参数: 
+*/
+{
+	"user_id":"abc1234",//用户id（微信号）
+	"target_id":"114514",//目标id
+	"update_time":{
+		//更新时间
+		"year":"2020",//年
+		"month":"11",//月
+		"day":"11",//日 
+	}
+}
+/*返回结果*/
+{
+	"status":true,//更新目标状态成功时 
+	"msg":"超时未确认目标"//返回消息 
+}
+{
+	"status":false,//更新目标状态失败
+	"msg":"提示词"//失败原因 
+}
+/*
+7.查看往期目标
+请求路径:/user/target/history
+提交参数: 
+*/
+{
+	"user_id":"abc1234",//用户id（微信号）
+	"target_id":"114514",//目标id 
+}
+/*返回结果*/
+{
+	"status":true,//查找成功时
+	"target":{//返回目标类 
+		"title":"MyTarget",//标题 
+		"start_time":{//开始日期 
+			"year":"2020",//年
+			"month":"11",//月
+			"day":"11"//日 
+		},
+		"end_time":{//结束日期 
+			"year":"2020",//年
+			"month":"11",//月
+			"day":"11",//日 
+		},
+		"content":"TargetContent"//目标具体内容 
+	},
+	"msg":"查找成功"//返回消息 
+}
+{
+	"status":false,//查找失败时 
+	"msg":"提示词"//失败原因 
+}
+/*
+8.查看剧情日志
+请求路径:/user/line/story/find
+提交参数: 
+*/
+{
+	"user_id":"abc1234",//用户id（微信号）
+	"line_id":"1",//剧本id 
+	"story_id":"1919810"//故事编号
+}
+/*返回结果*/
+{
+	"status":true,//查找成功时 
+	"story":{
+		"story_id":"1919810",//故事编号
+		"story_title":"Title",//故事标题
+		"story_content":"StoryContent",//故事内容
+	}
+	"msg":"查找成功"//返回消息 
+}
+{
+	"status":false,//查找失败时
+	"msg":"提示词"//失败原因 
+}
+/*
+9.目标确认后查看（解锁）剧情
+请求路径:/user/target/complete/unlock 
+提交参数: 
+*/
+{
+	"user_id":"abc1234",//用户id（微信号）
+	"line_id":"1",//剧本编号 
+	"story_progress":"24",//故事编号 
+}
+/*返回结果*/
+{
+	"status":true,//解锁成功时
+	"story":{
+		"story_id":"1919810",//故事编号
+		"story_title":"Title",//故事标题
+		"story_content":"StoryContent",//故事内容
+	},
+	"msg":"解锁成功"//返回消息 
+}
+{
+	"status":false,//解锁失败时
+	"msg":"提示词"//失败原因 
+}
+/*
+10.添加新剧情到日志
+请求路径:/user/line/story/add 
+提交参数: 
+*/
+{
+	"user_id":"abc1234",//用户id（微信号）
+	"story_id":"1919810",//故事id
+	"target_id":"114514"//目标id 
+}
+/*返回结果*/
+{
+	"status":true,//添加成功时
+	"story":{
+		"story_id":"1919810",//故事编号
+		"story_title":"Title",//故事标题
+		"story_content":"StoryContent",//故事内容
+	}
+	"msg":"添加成功"//返回消息 
+}
+{
+	"status":false,//添加失败时
+	"msg":"提示词"//失败原因 
+}
+/*
+11.删除目标
+请求路径:/user/target/delete
+提交参数: 
+*/
+{
+	"user_id":"abc1234",//用户id（微信号）
+	"target_id":"114514",//目标id 
+}
+/*返回结果*/
+{
+	"status":true,//删除成功时
+	"msg":"删除成功"//返回消息 
+}
+{
+	"status":false,//删除失败时
+	"msg":"提示词"//失败原因 
+}
+/*
+11.选择剧本
+请求路径:/user/line/story/choose
+提交参数: 
+*/
+{
+	"user_id":"abc1234",//用户id（微信号）
+	"line_id":"1",//剧本id 
+}
+/*返回结果*/
+{
+	"status":true,//选择剧本成功时
+	"msg":"选择剧本成功"//返回消息 
+}
+{
+	"status":false,//选择剧本失败时
+	"msg":"提示词"//失败原因 
+}
+
